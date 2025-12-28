@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Segoe Black';
+  src:
+    url('./segoe-black.otf') format('opentype'),
+    url('./segoe-black.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Agrega esto a tu archivo fonts.css */
+.helvetica-title {
+  font-family: 'Segoe Black'; /* Cambia 'sans-serif' al tipo de fuente de respaldo que prefieras */
+}
+
+/*
+
+@font-face {
+  font-family: 'Aptos Black';
+  src:
+    url('./aptos-black.ttf') format('truetype'),
+    url('./aptos-black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*/
