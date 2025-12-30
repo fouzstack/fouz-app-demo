@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Arroz",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Acondicionador",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Aceite",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Comino",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Detergente Polvo",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Detergente liquido",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Espaguettis",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Fideos",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Frijol Negro",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Huevo",
+    "unit": "unit",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Jamón",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Jurel en tomate",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Ketchup",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Leche condensada",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Leche en polvo",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Leche evaporada",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Mayonesa",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Picadillo Pollo",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Picadillo Pavo",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Pasta Dental",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Pimienta Dulce",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Refresco de polvo",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Sazon Golla",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Shampoo",
+    "unit": "ml",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Salchichas",
+    "unit": "kg",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Sopa instantanea",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Tosinito",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  },
+  {
+    "name": "Chupa Chups",
+    "unit": "g",
+    "price": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": 0,
+    "sold_products": 0
+  }
+]

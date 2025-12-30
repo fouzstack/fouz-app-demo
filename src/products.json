@@ -1,0 +1,50 @@
+[
+  {
+    "code": "",
+    "name": "Cerveza Cristal",
+    "unit": "bt",
+    "price": 250.0,
+    "losses": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": null,
+    "sold_products": 0,
+    "cost": 45.0
+  },
+  {
+    "code": "",
+    "name": "Cerveza Mayabe",
+    "unit": "lt",
+    "price": 250.0,
+    "losses": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": null,
+    "sold_products": 0,
+    "cost": 230.0
+  },
+  {
+    "code": "",
+    "name": "Cerveza Cacique",
+    "unit": "lt",
+    "price": 250.0,
+    "losses": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": null,
+    "sold_products": 0,
+    "cost": 820.0
+  },
+  {
+    "code": "",
+    "name": "Cerveza Bucanero",
+    "unit": "bt",
+    "price": 250.0,
+    "losses": 0,
+    "initial_products": 0,
+    "incoming_products": 0,
+    "final_products": null,
+    "sold_products": 0,
+    "cost": 340.0
+  }
+]

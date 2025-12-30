@@ -1,0 +1,253 @@
+@import 'tailwindcss/preflight';
+@tailwind utilities;
+
+@import 'tailwindcss';
+/* Note: You may need to change the path to fit your project structure */
+
+@config "../tailwind.config.js";
+
+:root {
+  font-family: Aptos, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  max-width: 1300px;
+  margin: 0 auto;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  font-size: 16px; /*clamp(1rem, calc(0.80rem + 0.33vw), 1.10rem);*/
+}
+
+body {
+  margin: 0 auto;
+  height: 100%;
+  max-width: 1300px;
+  min-height: 100vh;
+  font-size: 16px; /*clamp(1rem, calc(0.80rem + 0.33vw), 1.10rem);*/
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.1s ease-out;
+}
+
+@media print {
+  .not-printable {
+    display: none;
+  }
+}
+
+.not-selected {
+  user-select: none;
+  cursor: pointer;
+}
+.table-container {
+  overflow-x: auto; /* Permitir scroll horizontal */
+  overflow-y: hidden; /* Evitar scroll vertical si no es necesario */
+  max-width: 100%; /* O limitar el ancho si es necesario */
+}
+
+.table-auto-center {
+  margin: 0 auto;
+}
+
+.input_example {
+  @apply bg-gray-200 border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.btn {
+  @apply bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white font-bold py-2 px-4 rounded hover:bg-red-700;
+}
+
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+}
+.grid-post-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 320px));
+}
+
+a {
+  /*color: #007bff; /* Example link color */
+  text-decoration: none;
+  font-weight: bolder;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.white-text-shadow {
+  text-shadow: 0 0 10px #f1f1f1;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 900px) {
+  .flex-container {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-md {
+    margin: 2em 0;
+  }
+}
+
+.responsive-picture {
+  max-width: 100%;
+  height: auto;
+}
+.object-fill-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 4;
+  background: radial-gradient(circle closest-side, #000 70%, #0000) 0 /
+    calc(100% / 3) 100% space;
+  clip-path: inset(0 100% 0 0);
+  animation: dot 2s steps(4) infinite;
+}
+@keyframes dot {
+  to {
+    clip-path: inset(0 -34% 0 0);
+  }
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.opacity {
+  animation: opacity 1s;
+  transition: all 1s;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.button-effect {
+  cursor: pointer;
+}
+.button-effect {
+  -webkit-animation: jello-horizontal 0.9s both;
+  animation: jello-horizontal 0.9s both;
+}
+
+@-webkit-keyframes jello-horizontal {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes jello-horizontal {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.highlighted-row {
+  animation: highlightRow 1.2s ease-out;
+}
+
+@keyframes highlightRow {
+  0% {
+    background-color: #000000;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
