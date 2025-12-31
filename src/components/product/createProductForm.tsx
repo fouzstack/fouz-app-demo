@@ -182,7 +182,7 @@ const CreateProductForm = () => {
         {/* Desktop Header */}
         <div className='hidden md:flex items-center justify-between mb-8'>
           <button
-            onClick={() => navigate('/products')}
+            onClick={() => navigate('/')}
             className='flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-colors p-3 hover:bg-gray-800/60 rounded-xl transition-all duration-300'
           >
             <ArrowLeftIconSolid className='w-5 h-5' />
