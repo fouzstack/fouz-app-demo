@@ -26,50 +26,50 @@ interface CardProductProps {
   ) => string;
 }
 
-// Sistema de colores semántico y accesible
+// Sistema de colores corporativo simplificado
 const COLOR_SYSTEM = {
-  // ESTADO ACTUAL (Alta importancia)
-  success: {
+  // ESTADO ACTUAL (Prioridad 1 - Lo más importante)
+  stock: {
     text: 'text-emerald-400',
-    bg: 'bg-emerald-400/10',
-    border: 'border-emerald-400',
+    bg: 'bg-emerald-900/20',
+    border: 'border-emerald-500/40',
     icon: 'text-emerald-400',
   },
-  primary: {
+  sales: {
     text: 'text-blue-400',
-    bg: 'bg-blue-400/10',
-    border: 'border-blue-400',
+    bg: 'bg-blue-900/20',
+    border: 'border-blue-500/40',
     icon: 'text-blue-400',
   },
-
-  // MOVIMIENTOS (Media importancia)
+  
+  // ALERTAS (Prioridad 2 - Atención necesaria)
   warning: {
     text: 'text-amber-400',
-    bg: 'bg-amber-400/10',
-    border: 'border-amber-400',
+    bg: 'bg-amber-900/20',
+    border: 'border-amber-500/40',
     icon: 'text-amber-400',
   },
-  info: {
-    text: 'text-cyan-400',
-    bg: 'bg-cyan-400/10',
-    border: 'border-cyan-400',
-    icon: 'text-cyan-400',
-  },
-
-  // ALERTAS (Alta visibilidad)
   danger: {
     text: 'text-red-400',
-    bg: 'bg-red-400/10',
-    border: 'border-red-400',
+    bg: 'bg-red-900/20',
+    border: 'border-red-500/40',
     icon: 'text-red-400',
   },
-
-  // NEUTRALES (Jerarquía visual)
+  
+  // INFORMACIÓN (Prioridad 3 - Detalles)
+  info: {
+    text: 'text-gray-400',
+    bg: 'bg-gray-800/60',
+    border: 'border-gray-700',
+    icon: 'text-gray-400',
+  },
+  
+  // JERARQUÍA VISUAL (Escala de grises corporativa)
   neutral: {
-    high: 'text-gray-100',
-    medium: 'text-gray-300',
-    low: 'text-gray-500',
-    disabled: 'text-gray-600',
+    high: 'text-gray-100',       // Títulos importantes
+    medium: 'text-gray-300',     // Texto principal
+    low: 'text-gray-500',        // Texto secundario
+    bg: 'bg-[#111318]',          // Fondo de tarjeta
   },
 };
 
@@ -81,157 +81,231 @@ const CardProduct: React.FC<CardProductProps> = ({
   formatCurrency,
   getCardBorderColor,
 }) => {
-  //const textColorClass = getTextColorClass(product.final_products, product.sold_products);
   const cardBorderClass = getCardBorderColor(
     product.final_products,
     product.sold_products,
   );
+
+  // Determinar estado crítico para simplificar
+  const isCriticalStock = (product.final_products ?? 0) <= 5;
+  const hasSales = (product.sold_products ?? 0) > 0;
 
   return (
     <div
       data-product-id={product.id}
       onClick={() => onClick(product)}
       className={`
-        p-6 bg-gray-900 rounded-2xl shadow-xl border-2 border-gray-700
-        hover:shadow-2xl cursor-pointer transition-all duration-300
-        transform hover:-translate-y-1 min-w-[320px] max-w-[380px] w-full
-        hover:border-gray-600
+        relative
+        bg-[#111318]
+        border border-gray-800
+        rounded-xl
+        shadow-xl shadow-black/30
+        cursor-pointer
+        transition-all duration-300
+        hover:bg-gray-800/60
+        hover:border-amber-500/40
+        hover:shadow-lg hover:shadow-black/40
+        hover:-translate-y-1
+        p-5
+        w-full
+        max-w-sm
+        min-w-[320px]
         ${cardBorderClass}
-        ${isHighlighted ? 'ring-4 ring-emerald-400 bg-emerald-400/5 scale-105' : ''}
-        flex flex-col
-        mx-auto group
+        ${isHighlighted ? 'ring-2 ring-amber-400 ring-offset-2 ring-offset-[#0d0f12] bg-amber-400/5' : ''}
+        flex flex-col gap-4
+        group
       `}
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick(product)}
       role='button'
       aria-label={`Ver detalles de ${product.name}`}
     >
-      {/* Header con mejor contraste */}
-      <div className='mb-6'>
-        <p
-          className={`font-bold text-2xl mb-3 ${COLOR_SYSTEM.neutral.high} truncate`}
-        >
+      {/* Header - Nombre del producto */}
+      <div className='mb-2'>
+        <h3 className={`
+          text-lg font-bold
+          ${COLOR_SYSTEM.neutral.high}
+          truncate
+          mb-1
+        `}>
           {product.name}
-        </p>
+        </h3>
+        <div className='flex items-center gap-2'>
+          <span className={`text-sm ${COLOR_SYSTEM.neutral.low}`}>
+            Precio unitario:
+          </span>
+          <span className={`text-sm font-medium ${COLOR_SYSTEM.neutral.medium}`}>
+            {formatCurrency(product.price)}
+          </span>
+        </div>
+      </div>
 
-        {/* KPIs Principales - Máximo contraste */}
-        <div className='flex justify-between items-center bg-gray-800 rounded-xl p-4 border border-gray-600'>
-          <div className='text-center flex-1'>
-            <div className='flex items-center gap-2 justify-center mb-2'>
-              <ArchiveBoxIcon
-                className={`h-6 w-6 ${COLOR_SYSTEM.success.icon}`}
-              />
-              <span
-                className={`text-sm font-medium ${COLOR_SYSTEM.neutral.medium}`}
-              >
-                Finales
+      {/* KPIs CRÍTICOS - Lo más importante (Prioridad 1) */}
+      <div className='grid grid-cols-2 gap-4 mb-2'>
+        {/* Stock Final */}
+        <div className={`
+          ${COLOR_SYSTEM.stock.bg}
+          border ${COLOR_SYSTEM.stock.border}
+          rounded-lg
+          p-4
+          text-center
+          ${isCriticalStock ? 'animate-pulse-gentle' : ''}
+        `}>
+          <div className='flex flex-col items-center'>
+            <div className='flex items-center gap-2 mb-1'>
+              <ArchiveBoxIcon className={`h-5 w-5 ${COLOR_SYSTEM.stock.icon}`} />
+              <span className={`text-sm font-medium ${COLOR_SYSTEM.neutral.medium}`}>
+                Stock
               </span>
             </div>
-            <span className={`text-3xl font-bold ${COLOR_SYSTEM.success.text}`}>
+            <span className={`text-2xl font-bold ${COLOR_SYSTEM.stock.text}`}>
               {formatNumber(product.final_products)}
             </span>
+            {isCriticalStock && (
+              <span className='text-xs text-amber-400 mt-1'>
+                ¡Stock bajo!
+              </span>
+            )}
           </div>
+        </div>
 
-          <div className='h-12 w-px bg-gray-600 mx-2'></div>
-
-          <div className='text-center flex-1'>
-            <div className='flex items-center gap-2 justify-center mb-2'>
-              <ShoppingBagIcon
-                className={`h-6 w-6 ${COLOR_SYSTEM.primary.icon}`}
-              />
-              <span
-                className={`text-sm font-medium ${COLOR_SYSTEM.neutral.medium}`}
-              >
+        {/* Ventas */}
+        <div className={`
+          ${COLOR_SYSTEM.sales.bg}
+          border ${COLOR_SYSTEM.sales.border}
+          rounded-lg
+          p-4
+          text-center
+        `}>
+          <div className='flex flex-col items-center'>
+            <div className='flex items-center gap-2 mb-1'>
+              <ShoppingBagIcon className={`h-5 w-5 ${COLOR_SYSTEM.sales.icon}`} />
+              <span className={`text-sm font-medium ${COLOR_SYSTEM.neutral.medium}`}>
                 Vendidos
               </span>
             </div>
-            <span className={`text-3xl font-bold ${COLOR_SYSTEM.primary.text}`}>
+            <span className={`text-2xl font-bold ${COLOR_SYSTEM.sales.text}`}>
               {formatNumber(product.sold_products)}
             </span>
+            {hasSales && (
+              <span className='text-xs text-blue-400 mt-1'>
+                En movimiento
+              </span>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Valor económico - Destacado pero diferente */}
-      <div
-        className={`rounded-xl p-4 mb-4 ${COLOR_SYSTEM.success.bg} border ${COLOR_SYSTEM.success.border}`}
-      >
+      {/* VALOR TOTAL - Destacado pero separado */}
+      <div className={`
+        bg-gradient-to-r from-[#0f1115] to-[#1a1d24]
+        border border-gray-800
+        rounded-lg
+        p-3
+        text-center
+        mb-2
+      `}>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-2'>
-            <BanknotesIcon className={`h-6 w-6 ${COLOR_SYSTEM.success.icon}`} />
-            <span
-              className={`text-lg font-semibold ${COLOR_SYSTEM.neutral.high}`}
-            >
-              Importe
+            <BanknotesIcon className={`h-5 w-5 text-amber-400`} />
+            <span className={`text-sm font-medium ${COLOR_SYSTEM.neutral.medium}`}>
+              Valor total
             </span>
           </div>
-          <span className={`text-2xl font-bold ${COLOR_SYSTEM.success.text}`}>
+          <span className={`text-xl font-bold text-amber-400`}>
             {formatCurrency(product.total_cash)}
           </span>
         </div>
       </div>
 
-      {/* Movimientos de inventario - Colores semánticos */}
-      <div className='space-y-3 mb-4'>
-        <div className='flex justify-between items-center py-2 px-3 rounded-lg bg-gray-800/50'>
+      {/* MOVIMIENTOS - Información técnica simplificada */}
+      <div className='space-y-2'>
+        {/* Entradas */}
+        <div className='flex justify-between items-center py-2 px-3 rounded-lg bg-gray-800/40'>
           <div className='flex items-center gap-2'>
-            <CubeIcon className={`h-5 w-5 ${COLOR_SYSTEM.info.icon}`} />
-            <span className={COLOR_SYSTEM.neutral.medium}>
-              Inventario Inicial
+            <TruckIcon className={`h-4 w-4 ${COLOR_SYSTEM.info.icon}`} />
+            <span className={`text-sm ${COLOR_SYSTEM.neutral.medium}`}>
+              Entradas
             </span>
           </div>
-          <span className={`font-semibold ${COLOR_SYSTEM.info.text}`}>
-            {formatNumber(product.initial_products)}
-          </span>
-        </div>
-
-        <div className='flex justify-between items-center py-2 px-3 rounded-lg bg-gray-800/50'>
-          <div className='flex items-center gap-2'>
-            <TruckIcon className={`h-5 w-5 ${COLOR_SYSTEM.info.icon}`} />
-            <span className={COLOR_SYSTEM.neutral.medium}>Entradas</span>
-          </div>
-          <span className={`font-semibold ${COLOR_SYSTEM.info.text}`}>
+          <span className={`text-sm font-medium ${COLOR_SYSTEM.info.text}`}>
             {formatNumber(product.incoming_products)}
           </span>
         </div>
 
-        <div className='flex justify-between items-center py-2 px-3 rounded-lg bg-red-400/5 border border-red-400/20'>
+        {/* Stock inicial */}
+        <div className='flex justify-between items-center py-2 px-3 rounded-lg bg-gray-800/40'>
           <div className='flex items-center gap-2'>
-            <ExclamationCircleIcon
-              className={`h-5 w-5 ${COLOR_SYSTEM.danger.icon}`}
-            />
-            <span className={COLOR_SYSTEM.danger.text}>Pérdidas</span>
+            <CubeIcon className={`h-4 w-4 ${COLOR_SYSTEM.info.icon}`} />
+            <span className={`text-sm ${COLOR_SYSTEM.neutral.medium}`}>
+              Inicial
+            </span>
           </div>
-          <span className={`font-semibold ${COLOR_SYSTEM.danger.text}`}>
-            {formatNumber(product.losses)}
+          <span className={`text-sm font-medium ${COLOR_SYSTEM.info.text}`}>
+            {formatNumber(product.initial_products)}
+          </span>
+        </div>
+
+        {/* Pérdidas (solo si existen) */}
+        {(product.losses ?? 0) > 0 && (
+          <div className={`
+            ${COLOR_SYSTEM.danger.bg}
+            border ${COLOR_SYSTEM.danger.border}
+            rounded-lg
+            p-2
+          `}>
+            <div className='flex items-center justify-between'>
+              <div className='flex items-center gap-2'>
+                <ExclamationCircleIcon className={`h-4 w-4 ${COLOR_SYSTEM.danger.icon}`} />
+                <span className={`text-sm ${COLOR_SYSTEM.danger.text}`}>
+                  Pérdidas
+                </span>
+              </div>
+              <span className={`text-sm font-bold ${COLOR_SYSTEM.danger.text}`}>
+                {formatNumber(product.losses)}
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Disponibles para venta */}
+        <div className='flex justify-between items-center py-2 px-3 rounded-lg bg-gray-800/40'>
+          <div className='flex items-center gap-2'>
+            <ArchiveBoxIcon className={`h-4 w-4 ${COLOR_SYSTEM.warning.icon}`} />
+            <span className={`text-sm ${COLOR_SYSTEM.neutral.medium}`}>
+              Disponibles
+            </span>
+          </div>
+          <span className={`text-sm font-medium ${COLOR_SYSTEM.warning.text}`}>
+            {formatNumber(product.available_products)}
           </span>
         </div>
       </div>
 
-      <div className='flex justify-between items-center py-2 px-3 rounded-lg bg-amber-400/5 border border-amber-400/20'>
-        <div className='flex items-center gap-2'>
-          <ArchiveBoxIcon className={`h-5 w-5 ${COLOR_SYSTEM.warning.icon}`} />
-          <span className={COLOR_SYSTEM.warning.text}>A la Venta</span>
+      {/* Indicador de interacción sutil */}
+      <div className='absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+        <ChevronRightIcon className='h-4 w-4 text-gray-400' />
+      </div>
+
+      {/* Estado crítico badge */}
+      {isCriticalStock && (
+        <div className='absolute -top-2 -right-2'>
+          <div className='px-2 py-1 bg-red-400/20 border border-red-400/40 rounded-full'>
+            <span className='text-xs font-medium text-red-400'>CRÍTICO</span>
+          </div>
         </div>
-        <span className={`font-semibold ${COLOR_SYSTEM.warning.text}`}>
-          {formatNumber(product.available_products)}
-        </span>
-      </div>
+      )}
 
-      {/* Información técnica - Mínima prominencia */}
-      <div className='mt-auto pt-3 border-t border-gray-700 text-center'>
-        <span className={`text-sm ${COLOR_SYSTEM.neutral.low}`}>
-          Precio unitario:{' '}
-          <span className={COLOR_SYSTEM.neutral.medium}>
-            {formatCurrency(product.price)}
-          </span>
-        </span>
-      </div>
-
-      {/* Indicador de interacción */}
-      <div className='absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity'>
-        <ChevronRightIcon className='h-5 w-5 text-gray-400' />
-      </div>
+      {/* Estilos CSS para animaciones */}
+      <style>{`
+        @keyframes pulse-gentle {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.8; }
+        }
+        .animate-pulse-gentle {
+          animation: pulse-gentle 2s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };

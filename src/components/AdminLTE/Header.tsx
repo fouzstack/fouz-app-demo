@@ -37,6 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
     if (path.includes('importar/inventario')) return 'Importar Inventario';
     if (path.includes('/tabla/integral')) return 'Tabla Integral';
     if (path.includes('/ventas')) return 'Ventas';
+    if (path.includes('/añadir/producto')) return 'Añadir Producto';
 
     return 'Panel de Control';
   };
