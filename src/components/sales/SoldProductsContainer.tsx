@@ -2,23 +2,27 @@ import React, { useState, useMemo } from 'react';
 import NotFoundProducts from '../404/NotFoundProducts';
 import SoldProductsTable from './SoldProductsTable';
 import ProductInfoCard from './ProductInfoCard';
-import { AdjustmentsHorizontalIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+  AdjustmentsHorizontalIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { ProcessedProduct } from '../table/productCalculations';
 import { useProductTableData } from '../table/useProductTableData';
 
 const SoldProductsContainer: React.FC = () => {
   const { products, handleRowClick } = useProductTableData();
-  
+
   // Estado para controlar el modal
-  const [selectedProduct, setSelectedProduct] = useState<ProcessedProduct | null>(null);
+  const [selectedProduct, setSelectedProduct] =
+    useState<ProcessedProduct | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
+
   // Estado para el filtro de productos vendidos/no vendidos
   const [showSoldProducts, setShowSoldProducts] = useState(true);
 
   // Filtrar productos basado en el estado del filtro
   const filteredProducts = useMemo(() => {
-    return products.filter(product => {
+    return products.filter((product) => {
       if (showSoldProducts) {
         // Mostrar productos vendidos (sold_products > 0)
         return (product.sold_products || 0) > 0;
@@ -44,7 +48,7 @@ const SoldProductsContainer: React.FC = () => {
   };
 
   const toggleFilter = () => {
-    setShowSoldProducts(prev => !prev);
+    setShowSoldProducts((prev) => !prev);
   };
 
   if (!products.length) {
@@ -52,27 +56,30 @@ const SoldProductsContainer: React.FC = () => {
   }
 
   return (
-    <section className="overscroll-auto scrollbar-hide table-auto-center bg-gray-900 min-h-screen">   
-            {/* Botón flotante para cambiar filtro */}
-            <button
-              onClick={toggleFilter}
-              className={`flex items-center justify-center z-100 fixed bottom-16 right-2 w-12 h-12 rounded-xl transition-all duration-200 ${
-                showSoldProducts 
-                  ? 'bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600' 
-                  : 'bg-gradient-to-r from-gray-800 to-black hover:from-gray-600 hover:to-gray-700'
-              }`}
-              aria-label={showSoldProducts ? 'Mostrar productos no vendidos' : 'Mostrar productos vendidos'}
-            >
-              {showSoldProducts ? (
-                <AdjustmentsHorizontalIcon className="h-6 w-6 text-white" />
-              ) : (
-                <XMarkIcon className="h-6 w-6 text-white" />
-              )}
-            </button>
-          
+    <section className='overscroll-auto scrollbar-hide table-auto-center bg-gray-900 min-h-screen'>
+      {/* Botón flotante para cambiar filtro */}
+      <button
+        onClick={toggleFilter}
+        className={`flex items-center justify-center z-100 fixed bottom-16 right-2 w-12 h-12 rounded-xl transition-all duration-200 ${
+          showSoldProducts
+            ? 'bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600'
+            : 'bg-gradient-to-r from-gray-800 to-black hover:from-gray-600 hover:to-gray-700'
+        }`}
+        aria-label={
+          showSoldProducts
+            ? 'Mostrar productos no vendidos'
+            : 'Mostrar productos vendidos'
+        }
+      >
+        {showSoldProducts ? (
+          <AdjustmentsHorizontalIcon className='h-6 w-6 text-white' />
+        ) : (
+          <XMarkIcon className='h-6 w-6 text-white' />
+        )}
+      </button>
 
       {/* Tabla de productos */}
-      <div className="">
+      <div className=''>
         <SoldProductsTable
           heading={showSoldProducts ? 'Vendidos' : 'No Vendidos'}
           data={filteredProducts}
@@ -94,4 +101,3 @@ const SoldProductsContainer: React.FC = () => {
 };
 
 export default SoldProductsContainer;
-

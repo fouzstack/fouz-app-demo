@@ -30,7 +30,7 @@ const TableRowProduct: React.FC<TableRowProductProps> = ({
   };
 
   const value = valueLookup[accessorKey];
-  
+
   return (
     <tr
       data-product-id={product.id}

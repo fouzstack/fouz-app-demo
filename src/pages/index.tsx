@@ -113,7 +113,12 @@ export const routes = [
   },
   {
     path: '/finales', // Table de productos solo para dar finales
-    element: <AdminLTE> <ProductTablesContainer /></AdminLTE>,
+    element: (
+      <AdminLTE>
+        {' '}
+        <ProductTablesContainer />
+      </AdminLTE>
+    ),
     errorElement: <ErrorPage />,
     name: 'Finales',
   },

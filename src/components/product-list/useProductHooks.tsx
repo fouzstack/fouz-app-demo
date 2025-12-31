@@ -14,9 +14,10 @@ export const useFilteredProducts = (
     }
 
     // Si inventoryProducts es undefined, usar array vacío
-    const inventoryNames = inventoryProducts?.map((prod: ProductType) =>
-      normalizeNames(prod.name)
-    ) || [];
+    const inventoryNames =
+      inventoryProducts?.map((prod: ProductType) =>
+        normalizeNames(prod.name),
+      ) || [];
 
     return products
       ?.filter(

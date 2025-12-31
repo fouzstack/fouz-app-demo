@@ -25,20 +25,23 @@ const useProductList = () => {
 
   // Memoizar para evitar renders innecesarios
   const memoizedProducts = useMemo(() => products || [], [products]);
-  const memoizedInventoryProducts = useMemo(() => inventoryProducts || [], [inventoryProducts]);
+  const memoizedInventoryProducts = useMemo(
+    () => inventoryProducts || [],
+    [inventoryProducts],
+  );
 
   const isLoading = productsLoading || inventoryLoading;
   const error = productsError || inventoryError;
 
   const { searchTerm, handleSearchChange, clearSearch, setSearchTerm } =
     useSearch();
-    
+
   const filteredProducts = useFilteredProducts(
     memoizedProducts,
     memoizedInventoryProducts,
     searchTerm,
   );
-  
+
   const { displayedProducts, loadMore } = usePagination(
     filteredProducts,
     LIMIT,

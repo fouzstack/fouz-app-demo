@@ -91,8 +91,8 @@ const GroupHeader = ({
       className={`px-6 py-4 border-r border-[#1e3a5f] font-bold uppercase tracking-wider text-xs text-center sticky top-0 z-30
         ${g.color} ${g.border} ${g.text} border-b border-[#1e3a5f]`}
     >
-      <div className="flex items-center justify-center gap-2">
-        <div className="w-2 h-2 rounded-full bg-current opacity-70"></div>
+      <div className='flex items-center justify-center gap-2'>
+        <div className='w-2 h-2 rounded-full bg-current opacity-70'></div>
         <span>{g.name}</span>
       </div>
     </th>
@@ -105,16 +105,93 @@ const GroupHeader = ({
 const useTableColumns = (): TableColumn[] =>
   useMemo(
     () => [
-      { accessorKey: 'name', header: 'Producto', width: 140, fixed: true, group: 'product' },
-      { accessorKey: 'unit', header: 'U/M', width: 90, align: 'center', fixed: false, group: 'product' },
-      { accessorKey: 'initial_products', header: 'Inicial', width: 100, align: 'right', format: 'number', fixed: false, group: 'inventory' },
-      { accessorKey: 'incoming_products', header: 'Entrada', width: 100, align: 'right', format: 'number', fixed: false, group: 'inventory' },
-      { accessorKey: 'losses', header: 'Ajuste', width: 100, align: 'right', format: 'number', fixed: false, group: 'inventory' },
-      { accessorKey: 'available_products', header: 'A la Venta', width: 110, align: 'right', format: 'number', fixed: false, group: 'inventory' },
-      { accessorKey: 'final_products', header: 'Final', width: 100, align: 'right', format: 'number', fixed: false, group: 'inventory' },
-      { accessorKey: 'sold_products', header: 'Vendido', width: 110, align: 'right', format: 'number', fixed: false, group: 'sales' },
-      { accessorKey: 'price', header: 'Precio', width: 120, align: 'right', format: 'currency', fixed: false, group: 'finance' },
-      { accessorKey: 'total_cash', header: 'Importe', width: 140, align: 'right', format: 'currency', fixed: false, group: 'finance' },
+      {
+        accessorKey: 'name',
+        header: 'Producto',
+        width: 140,
+        fixed: true,
+        group: 'product',
+      },
+      {
+        accessorKey: 'unit',
+        header: 'U/M',
+        width: 90,
+        align: 'center',
+        fixed: false,
+        group: 'product',
+      },
+      {
+        accessorKey: 'initial_products',
+        header: 'Inicial',
+        width: 100,
+        align: 'right',
+        format: 'number',
+        fixed: false,
+        group: 'inventory',
+      },
+      {
+        accessorKey: 'incoming_products',
+        header: 'Entrada',
+        width: 100,
+        align: 'right',
+        format: 'number',
+        fixed: false,
+        group: 'inventory',
+      },
+      {
+        accessorKey: 'losses',
+        header: 'Ajuste',
+        width: 100,
+        align: 'right',
+        format: 'number',
+        fixed: false,
+        group: 'inventory',
+      },
+      {
+        accessorKey: 'available_products',
+        header: 'A la Venta',
+        width: 110,
+        align: 'right',
+        format: 'number',
+        fixed: false,
+        group: 'inventory',
+      },
+      {
+        accessorKey: 'final_products',
+        header: 'Final',
+        width: 100,
+        align: 'right',
+        format: 'number',
+        fixed: false,
+        group: 'inventory',
+      },
+      {
+        accessorKey: 'sold_products',
+        header: 'Vendido',
+        width: 110,
+        align: 'right',
+        format: 'number',
+        fixed: false,
+        group: 'sales',
+      },
+      {
+        accessorKey: 'price',
+        header: 'Precio',
+        width: 120,
+        align: 'right',
+        format: 'currency',
+        fixed: false,
+        group: 'finance',
+      },
+      {
+        accessorKey: 'total_cash',
+        header: 'Importe',
+        width: 140,
+        align: 'right',
+        format: 'currency',
+        fixed: false,
+        group: 'finance',
+      },
     ],
     [],
   );
@@ -144,12 +221,17 @@ const ProductTableFull: React.FC<ProductTableFullProps> = ({
 
   /* ───── FORMATTERS */
   const currencyFormatter = useMemo(
-    () => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }),
+    () =>
+      new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }),
     [],
   );
 
   const numberFormatter = useMemo(
-    () => new Intl.NumberFormat('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+    () =>
+      new Intl.NumberFormat('es-MX', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
     [],
   );
 
@@ -187,8 +269,7 @@ const ProductTableFull: React.FC<ProductTableFullProps> = ({
     );
 
     if (row) {
-      container.scrollTop =
-        row.offsetTop - container.clientHeight / 2;
+      container.scrollTop = row.offsetTop - container.clientHeight / 2;
     }
   }, [highlightedProductId]);
 
@@ -215,28 +296,28 @@ const ProductTableFull: React.FC<ProductTableFullProps> = ({
 
   return (
     <>
-      <article className="relative bg-[#111318] rounded-2xl scrollbar-hide">
-        <div className="bg-[#111318] border border-gray-800 rounded-xl p-1">
+      <article className='relative bg-[#111318] rounded-2xl scrollbar-hide'>
+        <div className='bg-[#111318] border border-gray-800 rounded-xl p-1'>
           <div
             ref={tableContainerRef}
-            className="overflow-auto  scrollbar-hide max-h-[calc(100vh-135px)] rounded-lg border border-[#1e3a5f]/50 bg-[#111318]"
+            className='overflow-auto  scrollbar-hide max-h-[calc(100vh-135px)] rounded-lg border border-[#1e3a5f]/50 bg-[#111318]'
           >
             <table
               style={{ tableLayout: 'fixed', minWidth: 1300 }}
               className={`w-full text-base bg-transparent ${newStyles ?? ''}`}
             >
               {/* CABECERA */}
-              <thead className="sticky top-0 z-40 bg-[#0f172a]">
-                <tr className="border-b border-[#1e3a5f]">
-                  <GroupHeader group="product" columnCount={2} />
-                  <GroupHeader group="inventory" columnCount={5} />
-                  <GroupHeader group="sales" columnCount={1} />
-                  <GroupHeader group="finance" columnCount={2} />
+              <thead className='sticky top-0 z-40 bg-[#0f172a]'>
+                <tr className='border-b border-[#1e3a5f]'>
+                  <GroupHeader group='product' columnCount={2} />
+                  <GroupHeader group='inventory' columnCount={5} />
+                  <GroupHeader group='sales' columnCount={1} />
+                  <GroupHeader group='finance' columnCount={2} />
                 </tr>
 
                 <tr
                   onClick={() => setShowFullTable?.((v) => !v)}
-                  className="cursor-pointer border-b border-[#1e3a5f]"
+                  className='cursor-pointer border-b border-[#1e3a5f]'
                 >
                   {columns.map((col) => (
                     <th
@@ -255,7 +336,7 @@ const ProductTableFull: React.FC<ProductTableFullProps> = ({
               </thead>
 
               {/* BODY */}
-              <tbody className="divide-y divide-[#334155]/30">
+              <tbody className='divide-y divide-[#334155]/30'>
                 {data.map((row, i) => {
                   const isHighlighted = row.id === highlightedProductId;
                   const rowBg = i % 2 === 0 ? 'bg-[#0f172a]' : 'bg-[#1e293b]';
@@ -289,13 +370,13 @@ const ProductTableFull: React.FC<ProductTableFullProps> = ({
 
               {/* FOOTER */}
               <tfoot>
-                <tr className="sticky bottom-0 z-30 bg-[#0f172a] border-t border-amber-500/20">
+                <tr className='sticky bottom-0 z-30 bg-[#0f172a] border-t border-amber-500/20'>
                   {columns.map((col, index) => {
                     if (index < 2) {
                       return (
                         <td
                           key={col.accessorKey}
-                          className="px-4 py-4 text-amber-400 font-bold"
+                          className='px-4 py-4 text-amber-400 font-bold'
                         >
                           {index === 0 ? 'TOTALES' : ''}
                         </td>
